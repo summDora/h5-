@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>async</title>
+</head>
+<body>
+    <h2>js异步转同步</h2>
+    <p>async 用于申明一个 function 是异步的，而 await </p>
+    <p>用于等待一个异步方法执行完成。并且await 只能出现在 async 函数中，否则会报错</p>
+    <h3>async作用：</h3>
+    <p>当调用一个 async 函数时，会返回一个 Promise 对象。</p>
+    <p>当这个 async 函数返回一个值时，Promise 的 resolve 方法会负责传递这个值；当 async 函数抛出异常时，Promise 的 reject 方法也会传递这个异常值。</p>
+    <p>async 函数中可能会有 await 表达式，这会使 async 函数暂停执行，等待 Promise  的结果出来，然后恢复async函数的执行并返回解析值（resolved）。</p>
+    <h3>await作用：</h3>
+    <p>await 表达式会暂停当前 async function 的执行，等待 Promise 处理完成。</p>
+    <p>若 Promise 正常处理(fulfilled)，其回调的resolve函数参数作为 await 表达式的值，继续执行 async function。</p>
+    <p>若 Promise 处理异常(rejected)，await 表达式会把 Promise 的异常原因抛出。另外，如果 await 操作符后的表达式的值不是一个 Promise，则返回该值本身。</p>
+
+    <script>
+        function resolveAfter2Seconds() {
+        return new Promise(resolve => {
+          setTimeout(() => {
+            resolve('resolved');
+          }, 2000);
+        });
+      }
+
+      async function asyncCall() {
+        console.log('calling1');
+        var result = await resolveAfter2Seconds();
+        console.log(result);
+        console.log('calling2');
+        // expected output: 'calling1','resolved','calling2'
+      }
+
+      asyncCall();
+        //  calling1
+        //  等待2s过后
+        //  输出resolved，calling2
+    </script>
+</body>
+</html>
