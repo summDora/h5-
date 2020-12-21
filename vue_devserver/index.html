@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h3>vue-cli3 根目录新建 vue.config.js</h3>
+    <h3>解决以下问题</h3>
+    <h4>1.vue 跨域</h4>
+    <pre>
+        devServer: {
+            proxy: {
+              "/server": {
+                target: "http://192.168.199.245:8721",
+                ws: true,
+                changeOrigin: true,
+                pathRewrite: {
+                  "^/server": "",
+                },
+              },
+            },
+          },
+    </pre>
+    <h4>2.局域网ip访问</h4>
+    <pre>
+        2.1
+        devServer: {
+            host:'0.0.0.0',
+            /*  host:'localhost', */
+            /*  host:'192.168.199.113', */
+            port: "8080",
+            open: true,
+          },
+        2.2 package.json
+        "scripts": {
+            "serve": "vue-cli-service serve --host 0.0.0.0",
+            "build": "vue-cli-service build",
+            "lint": "vue-cli-service lint"
+        },
+    </pre>
+    <p>异常情形：本机可以ip访问 同一局域网内 其他ip访问失败</p>
+    <p></p>
+</body>
+
+</html>
