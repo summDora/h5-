@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>rem适配</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0
+        }
+
+        #box {
+            /* width: 200px;
+            height: 200px; */
+            width: 0.5rem;
+            height: 0.5rem;
+            background: pink;
+        }
+    </style>
+</head>
+<!-- rem适配的本质 -->
+<!-- html根元素字体大小设置成屏幕区域的宽度 -->
+<!-- 屏幕宽度：1rem，盒子box占据一半 => 即为：0.5rem -->
+
+<body>
+    <div id="box"></div>
+    <script type="text/javascript">
+        window.onload = function () {
+            // 获取屏幕宽度
+            let width = document.documentElement.clientWidth;
+            // 获取html元素
+            let htmlNode = document.querySelector('html');
+            // 设置fontsize
+            htmlNode.style.fontSize = width + 'px'
+        }
+    </script>
+</body>
+
+</html>
